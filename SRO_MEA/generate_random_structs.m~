@@ -1,7 +1,7 @@
 clear all;
 close all;
 clc;
-Q=200;
+Q=20;
 FCC=textread('FCC');
 ISF=textread('ISF');
 %%%%%%%%%%%%% Monte Carlo procedure of creating random structs %%%%%%%%%%%
@@ -740,29 +740,22 @@ OP_ISF(f,18)=OP_ac_TNN_ISF;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  fid=fopen('FCC_SRO','wt');
-  fprintf(fid,'%s\n','Faa Fbb Fcc Fab Fbc Fac Saa Sbb Scc Sab Sbc Sac Taa Tbb Tcc Tab Tbc Tac');
-  [m,n]=size(OP_FCC);
+  fid=fopen(['POSCAR-',int2str(f)],'wt');
+  fprintf(fid,'%s\n','POSCAR');
+  fprintf(fid,'%s\n','1.00000000000000');
+  fprintf(fid,'%s\n','10.1823377609         0.0000000000         0.0000000000');
+  fprintf(fid,'%s\n','5.0911688805         8.8181631709         0.0000000000');
+  fprintf(fid,'%s\n','0.0000000000         0.0000000000        24.9415321350');
+  fprintf(fid,'%s\n','Co Cr Ni');
+  fprintf(fid,'%s\n','64 64 64');
+  fprintf(fid,'%s\n','Cartesian');
+  [m,n]=size(new_FCC);
  for i=1:1:m
     for j=1:1:n
        if j==n
-         fprintf(fid,'%g\n',OP_FCC(i,j));
+         fprintf(fid,'%g\n',new_FCC(i,j));
       else
-        fprintf(fid,'%g\t',OP_FCC(i,j));
-       end
-    end
-end
-fclose(fid);
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  fid=fopen('ISF_SRO','wt');
-  fprintf(fid,'%s\n','Faa Fbb Fcc Fab Fbc Fac Saa Sbb Scc Sab Sbc Sac Taa Tbb Tcc Tab Tbc Tac');
-  [m,n]=size(OP_ISF);
- for i=1:1:m
-    for j=1:1:n
-       if j==n
-         fprintf(fid,'%g\n',OP_FCC(i,j));
-      else
-        fprintf(fid,'%g\t',OP_FCC(i,j));
+        fprintf(fid,'%g\t',new_FCC(i,j));
        end
     end
 end
