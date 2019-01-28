@@ -13,6 +13,18 @@ for f=1:1:Q
   end
 end
 seed(all(seed==0,2),:) = [];
+fid=fopen('seeds','wt');
+  [m,n]=size(seed);
+ for i=1:1:m
+    for j=1:1:n
+       if j==n
+         fprintf(fid,'%g\n',seed(i,j));
+      else
+        fprintf(fid,'%g\t',seed(i,j));
+       end
+    end
+end
+fclose(fid);
 for f=1:1:Q
     new_FCC=[];
     new_ISF=[];
