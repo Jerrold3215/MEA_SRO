@@ -8,8 +8,22 @@
 
 
 for i=1:1:200
-plot(i,mean(FCC(1:i,1)),'xr')
-plot(i,mean(FCC(1:i,2)),'xg')
-plot(i,mean(FCC(1:i,3)),'xb')
-hold on
+M1(i)=mean(FCC(1:i,1));
+M2(i)=mean(FCC(1:i,2));
+M3(i)=mean(FCC(1:i,3));
+ME_fcc(i)=mean(E_fcc(1:i,1));
+ME_isf(i)=mean(E_isf(1:i,1));
+M_SFE(i)=mean(SFE(1:i,1));
 end
+% plot(M1,'-ob')
+% hold on
+% plot(M2,'-xr')
+% hold on
+% plot(M3,'-sg')
+% hold on
+% plot(ME_fcc,'-sr')
+% hold on
+% plot(ME_isf,'-bd')
+% hold on
+plot(M_SFE,'-or')
+hold on
