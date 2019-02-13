@@ -1,4 +1,4 @@
-% for i=1:1:100
+% for i=1:1:3000
 %     N(i)=rand;
 % end
 % for i=1:1:100
@@ -15,15 +15,15 @@ ME_fcc(i)=mean(E_fcc(1:i,1));
 ME_isf(i)=mean(E_isf(1:i,1));
 M_SFE(i)=mean(SFE(1:i,1));
 end
-% plot(M1,'-ob')
-% hold on
-% plot(M2,'-xr')
-% hold on
-% plot(M3,'-sg')
-% hold on
+plot(M1,'-ob')
+hold on
+plot(M2,'-xr')
+hold on
+plot(M3,'-sg')
+hold on
 % plot(ME_fcc,'-sr')
 % hold on
 % plot(ME_isf,'-bd')
 % hold on
-plot(M_SFE,'-or')
-hold on
+% plot(M_SFE,'-or')
+% hold on

@@ -1,7 +1,7 @@
 clear all;
 close all;
 clc;
-Q=10000;
+Q=100;
 FCC=textread('FCC');
 ISF=textread('ISF');
 %%%%%%%%%%%%% Monte Carlo procedure of creating random structs %%%%%%%%%%%
@@ -788,11 +788,17 @@ M_isf_1(i)=mean(OP_ISF(1:i,1));
 M_isf_2(i)=mean(OP_ISF(1:i,2));
 M_isf_3(i)=mean(OP_ISF(1:i,3));
 end
-plot(M_fcc_1,'-ob')
+plot(M_fcc_1,'-b')
 hold on
-plot(M_fcc_2,'-xr')
+plot(M_fcc_2,'-r')
 hold on
-plot(M_fcc_3,'-sg')
+plot(M_fcc_3,'-g')
+hold on
+plot(M_isf_1,'--b')
+hold on
+plot(M_isf_2,'--r')
+hold on
+plot(M_isf_3,'--g')
 hold on
 % plot(ME_fcc,'-sr')
 % hold on
