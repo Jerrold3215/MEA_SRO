@@ -1,0 +1,48 @@
+close all;
+clear all;
+clc;
+load('analysis.mat');
+PPP(:,1)=1000*(FCC(:,4)-FCC(:,2));
+PPP(:,2)=E_fcc(:,1);
+S(1)=randperm(200,1);
+for B=100:100:1000
+    T=1100-B;
+    for i=1:1:100
+        dPPP(i,1)=PPP(S(i)-1,1)-PPP(S,1);
+        dPPP(i,2)=PPP(S+1,1)-PPP(S,1);
+        prob(i,1)=exp(-dPPP(i,1)/T);
+        prob(i,2)=exp(-dPPP(i,2)/T);
+        if dPPP(i,1)<0 && dPPP(i,2)<0 && dPPP(i,1)<dPPP(i,2)
+            S(i+1)=S(i)-1;
+        elseif dPPP(i,1)<0 && dPPP(i,2)<0 && dPPP(i,1)>dPPP(i,2)
+            S(i+1)=S(i)+1;
+        elseif dPPP(i,1)<0 && dPPP(i,2)>=0
+            S(i+1)=S(i)-1;
+        elseif dPPP(i,1)>=0 && dPPP(i,2)<0
+            S(i+1)=S(i)+1;
+        elseif dPPP(i,1)>=0 && dPPP(i,2)>=0
+            r=rand;
+            if r>prob(i,1) && r>prob(i,2)
+               S(i+1)=S(i); 
+            end
+            if r>prob(i,1) && r<=prob(i,2)
+               S(i+1)=S(i)+1;
+            end
+            if r>prob(i,2) && r<=prob(i,1)
+               S=S-1;
+            end
+            if r<=prob(i,1) && r<=prob(i,2)
+               S(i+1)=S(i)+(prob(i,1)<=prob(i,2))*1-(prob(i,1)>prob(i,2))*1;
+            end
+        end
+%        plot(PPP(:,1),PPP(:,2),'xr')
+%        hold on
+%        plot(PPP(S,1),PPP(S,2),'ob')
+%        saveas(gcf,[num2str(T),'_',num2str(i),'.png']);
+%        close all;
+%        FS(B/100,1)=QQQ(S,2)-QQQ(S,1);
+%        FS(B/100,2)=QQQ(S,3);
+    end
+%        plot(FS(:,1),FS(:,2),'-ob');
+%        saveas(gcf,[num2str(T),'_FS','.png']);
+end
